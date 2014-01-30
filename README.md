@@ -1,11 +1,11 @@
 
 
 
-frame S4 class by Antonio Fasano
-===================================
+'frame' an S4 class inheriting from data.frame
+==============================================
 
 
-A class inherithing from data.frame featuring  `drop=FALSE` as default, an 'end' keyword, 0 index for 'all' and a 'desc' field.
+A class inheriting from data.frame featuring  `drop=FALSE` as default, an 'end' keyword, 0 index for 'all' and a 'desc' field.
 
 
 
@@ -35,7 +35,7 @@ The solution
 
 
 I developed  a new data.frame S4 class, `frame`, inheriting  from data.frame but exploiting the `0`, unused in subsetting, to select all rows or columns, so `x[0,j]` and `x[i,0]`  as   `x[,j]` and `x[i,]`.
-Also  `drop=FALSE`  it uses as the default value instead `drop=TRUE`.
+Also  `drop=FALSE`  is used as default value in place of `drop=TRUE`.
 Besides it uses a Matlab like `end` operator to get the last  rows or columns item, e.g.: `x[3:end, 2:end]`.
 
 A `desc` field can be added to annotate any  data description.
