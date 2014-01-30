@@ -1,12 +1,11 @@
 
 
-
 'frame' an S4 class inheriting from data.frame
 ==============================================
 
+Find me on [github](https://github.com/AntonioFasano/frame)
 
 A class inheriting from data.frame featuring  `drop=FALSE` as default, an 'end' keyword, 0 index for 'all' and a 'desc' field.
-
 
 
 The problem
@@ -35,9 +34,8 @@ The solution
 
 
 I developed  a new data.frame S4 class, `frame`, inheriting  from data.frame but exploiting the `0`, unused in subsetting, to select all rows or columns, so `x[0,j]` and `x[i,0]`  as   `x[,j]` and `x[i,]`.
-Also  `drop=FALSE`  is used as default value in place of `drop=TRUE`.
+Also  `drop=FALSE`  is used as the default value in place of `drop=TRUE`.
 Besides it uses a Matlab like `end` operator to get the last  rows or columns item, e.g.: `x[3:end, 2:end]`.
-
 A `desc` field can be added to annotate any  data description.
 
 
@@ -45,11 +43,11 @@ A `desc` field can be added to annotate any  data description.
 The old data.frame and the new one
 ---------------------------------
 
-This class inherits from the data.frame class: if a function  works  with a data.frame it is supposed to work with 'frame'. If your code requires a formal data.frame you can obtain it from the 'frame' x with:
+This class inherits from the data.frame class: if a function  works  with a data.frame it is supposed to work with 'frame'. If your code requires a formal data.frame, you can obtain it from  `x` frame with:
 
-dfm(x)
+    dfm(x)
 
-This is a shortcut for `as.data.frame` which in turn will call the specialised function a`s.data.frame.frame`.
+This is a shortcut for `as.data.frame` which in turn will call the specialised function `as.data.frame.frame`.
 
 
 
@@ -291,9 +289,7 @@ If the assignment is an *expression* contains 'end' the same rule applies to get
 Quoting in brackets means querying for the row/column named "end".
 
 
-**Bracket alternatives**
-
-These rules keep for bracket alternatives `` `[`(x,i,j)`` and  `` `[<-`(x,i,j)``.
+**Bracket alternatives**. These rules keep for bracket alternatives `` `[`(x,i,j)`` and  `` `[<-`(x,i,j)``.
 
     `[`(fr,end,end)
     #Frame
@@ -351,3 +347,6 @@ For assignments to a variable, outside brackets, quote twice.
 Obviously you can quote twice also with `sQuote`, `dQuote` or escaping inner quotation marks with "\\".
 
 
+
+<!--  LocalWords:  behaviour
+ -->
