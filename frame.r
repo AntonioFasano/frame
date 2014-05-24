@@ -1,8 +1,8 @@
 
 
 ## frame is an S4 class by Antonio Fasano
-## A class inherithing from data.frame featuring:
-## drop=FALSE as default, end keyword, 0 index for 'all' and a desc field.
+## A class inheriting from data.frame featuring:
+## drop=FALSE as default, end keyword, 0 index for 'all' and a 'desc' field.
 
 
 frame=setClass("frame", #Fancier name wanted))
@@ -22,6 +22,8 @@ setMethod(
     `[`,
     signature=signature(x="frame"),
     function(x,i,j, ..., drop=FALSE){
+        ##:ess-bp-start::browser@nil:##
+browser(expr=is.null(.ESSBP.[["@2@"]]))##:ess-bp-end:##
         p=as.list(sys.call())[-c(1,2)]; p$drop=NULL
         args=frame.extract(p, dim(x), paren=-2)
         if(length(p)==2 || !missing(drop)) args=c(args, drop=drop)
@@ -68,32 +70,32 @@ as.matrix.frame=function (x, rownames.force = NA, ...){
     as.matrix.data.frame(x, rownames.force = NA, ...)
 }
 
-setMethod(
-    `[`,
-    signature=signature(x="frame"),
-    function(x,i,j, ...){
-
-        p=as.list(sys.call())[-c(1,2)]
-        M= (function(a,b){ g=as.list(sys.call())[3] }) ( , )
-        end=c(end=nrow(x), end=ncol(x))
-        l=list(end=end[[h]])
-        e=sys.frame(sys.parent())
-
-        for (h in 1:2){
-            if(identical(p[h], M) || identical(p[[h]], 0)) {p[h]=M; next}
-            if(class(p[[h]])=='name' || class(p[[h]])=='call'){
-                p[[h]]= eval(p[[h]], l, e)
-                if(length(p[[h]])==1 && class(p[[h]])=='character')
-                    p[[h]]=eval(parse(text=eval(p[[h]])), l, e)
-            }
-        }
-
-        if(missing(drop)) drop=FALSE
-        do.call(`[.data.frame`, list(x, p[[1]], p[[2]],drop=drop))
-
-
-
-    })
+#setMethod(
+#    `[`,
+#    signature=signature(x="frame"),
+#    function(x,i,j, ...){
+# 
+#        p=as.list(sys.call())[-c(1,2)]
+#        M= (function(a,b){ g=as.list(sys.call())[3] }) ( , )
+#        end=c(end=nrow(x), end=ncol(x))
+#        l=list(end=end[[h]])
+#        e=sys.frame(sys.parent())
+# 
+#        for (h in 1:2){
+#            if(identical(p[h], M) || identical(p[[h]], 0)) {p[h]=M; next}
+#            if(class(p[[h]])=='name' || class(p[[h]])=='call'){
+#                p[[h]]= eval(p[[h]], l, e)
+#                if(length(p[[h]])==1 && class(p[[h]])=='character')
+#                    p[[h]]=eval(parse(text=eval(p[[h]])), l, e)
+#            }
+#        }
+# 
+#        if(missing(drop)) drop=FALSE
+#        do.call(`[.data.frame`, list(x, p[[1]], p[[2]],drop=drop))
+# 
+# 
+# 
+#    })
 
 
 
